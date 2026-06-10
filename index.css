@@ -1,4 +1,4 @@
-/* --- Global Resets & Setup --- */
+/* --- Global Resets & Black Background --- */
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +7,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(rgba(10, 15, 30, 0.7), rgba(10, 15, 30, 0.85)), 
-                url('https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?q=80&w=1920') no-repeat center center/cover;
+    background-color: #000000; /* Pure black background */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,38 +18,7 @@ body {
     padding: 40px 20px;
 }
 
-/* --- Background Particle Elements --- */
-.particles {
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    overflow: hidden;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.particle {
-    position: absolute;
-    color: rgba(138, 43, 226, 0.3);
-    font-size: 12px;
-    animation: floatUp 8s infinite linear;
-}
-
-/* Hardcoded coordinates for the demo floating nodes */
-.p1 { top: 20%; left: 15%; animation-delay: 0s; }
-.p2 { top: 60%; left: 80%; animation-delay: 2s; }
-.p3 { top: 80%; left: 25%; animation-delay: 4s; }
-.p4 { top: 30%; left: 70%; animation-delay: 6s; }
-
-@keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    50% { opacity: 0.5; }
-    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-}
-
-/* --- Global Layout Navigation Header --- */
+/* --- Top Navigation Bar --- */
 .nav-bar {
     position: absolute;
     top: 0;
@@ -59,12 +27,17 @@ body {
     display: flex;
     justify-content: space-between;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     z-index: 10;
 }
 
+.brand {
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+}
+
 .nav-bar a {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
     transition: color 0.3s;
 }
@@ -73,65 +46,68 @@ body {
     color: #ffffff;
 }
 
-/* --- Container Block Configuration --- */
+/* --- Main Layout Frame --- */
 .container {
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
     width: 100%;
-    max-width: 420px;
+    max-width: 440px;
 }
 
-/* --- Glassmorphic Profile Component --- */
+/* --- Profile Card (Glassmorphism on Black) --- */
 .profile-card {
     width: 100%;
-    background: rgba(10, 20, 40, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 180, 216, 0.25);
-    border-radius: 16px;
-    padding: 30px 24px;
-    text-align: center;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background: rgba(15, 22, 36, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 25px 30px 35px 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
 }
 
-/* Badge Layout Formatting */
+/* Top Toolbar/Badge Row Layout */
 .badge-row {
     display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 20px;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
 }
 
-.badge-row i {
+.left-badges {
+    display: flex;
+    gap: 12px;
+}
+
+.left-badges i {
     cursor: pointer;
-    transition: transform 0.2s, color 0.2s;
+    transition: color 0.2s;
 }
 
-.badge-row i:hover {
-    transform: scale(1.2);
-    color: #00b4d8;
+.left-badges i:hover {
+    color: #4cc9f0;
 }
 
 .view-count {
-    margin-left: auto;
     font-family: 'Share Tech Mono', monospace;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    font-size: 0.85rem;
 }
 
-/* Avatar Presentation Design */
+/* Profile Avatar Presentation */
 .avatar-container {
     position: relative;
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 15px;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 16px;
 }
 
 .avatar {
@@ -139,109 +115,117 @@ body {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .status-dot {
     position: absolute;
     bottom: 4px;
-    right: 4px;
-    width: 12px;
-    height: 12px;
-    background-color: #2ec4b6;
+    right: 6px;
+    width: 11px;
+    height: 11px;
+    background-color: #00f5d4;
     border-radius: 50%;
-    border: 2px solid #0a1428;
+    box-shadow: 0 0 8px #00f5d4;
 }
 
-/* User Identity Data Callouts */
+/* Typography Identity Blocks */
 .username {
-    font-size: 1.4rem;
+    font-size: 1.45rem;
     font-weight: 600;
+    text-align: center;
     letter-spacing: 0.5px;
-    background: linear-gradient(90deg, #ffffff, #00b4d8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #4cc9f0;
 }
 
 .subtext {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.4);
-    margin-top: 2px;
+    text-align: center;
+    margin-top: 3px;
 }
 
 .status-quote {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 15px 0 25px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin: 24px 0 24px;
     font-style: italic;
+    font-weight: 300;
 }
 
-/* Content Links Component Structure */
+/* Menu Button Lists styling */
 .links-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .link-item {
     display: flex;
     align-items: center;
-    padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.03);
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
-    font-size: 0.95rem;
-    transition: all 0.25s ease;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
 }
 
 .link-item i {
-    width: 25px;
+    width: 28px;
     font-size: 1.1rem;
-    color: rgba(0, 180, 216, 0.8);
-    margin-right: 10px;
+    color: #4cc9f0;
 }
 
 .link-item:hover {
-    background: rgba(0, 180, 216, 0.1);
-    border-color: rgba(0, 180, 216, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
     color: #ffffff;
-    transform: translateX(4px);
 }
 
-/* --- Inline System Audio Track Deck --- */
+/* --- Styled Dark Music Player Widget --- */
 .audio-player {
     width: 100%;
-    background: rgba(10, 20, 40, 0.5);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    padding: 12px 20px;
+    background: rgba(15, 22, 36, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
 }
 
 .track-art {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: #222;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .track-info {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+}
+
+.track-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
 }
 
 .track-name {
@@ -251,45 +235,44 @@ body {
 
 .track-artist {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .progress-container {
     display: flex;
     align-items: center;
     gap: 8px;
-    width: 100%;
 }
 
 .time-stamp {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: rgba(255, 255, 255, 0.4);
 }
 
 .progress-bar {
     flex-grow: 1;
-    height: 4px;
+    height: 3px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 2px;
     position: relative;
-    cursor: pointer;
 }
 
 .progress-current {
-    width: 35%;
+    width: 32%;
     height: 100%;
-    background: linear-gradient(90deg, #00b4d8, #7209b7);
+    background: linear-gradient(90deg, #4cc9f0, #7209b7);
     border-radius: 2px;
 }
 
 .controls i {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: color 0.2s;
+    padding: 4px;
 }
 
 .controls i:hover {
-    color: #00b4d8;
+    color: #ffffff;
 }
