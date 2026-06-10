@@ -3,63 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wroth.lol</title>
+    <title>Bio Link Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
-    <link href="index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="bg-media-container">
-        <img src="" alt="Purple Sword Background" class="bg-media">
+    <div class="particles">
+        <i class="fa-solid fa-money-bill-wave particle p1"></i>
+        <i class="fa-solid fa-crown particle p2"></i>
+        <i class="fa-solid fa-dollar-sign particle p3"></i>
+        <i class="fa-solid fa-gem particle p4"></i>
     </div>
 
-    <div class="vignette-overlay"></div>
-    <div class="scanlines"></div>
-    <div class="matrix-grid"></div>
+    <header class="nav-bar">
+        <div class="brand">laundered.cash/rich</div>
+        <a href="#" class="home-btn">home</a>
+    </header>
 
-    <div class="profile-card">
+    <main class="container">
         
-        <div class="status-badge">
-            <span class="pulse-indicator"></span>
-            <span class="pulse-ripple"></span>
-            ACTIVE
-        </div>
-
-        <div class="pfp-frame">
-            <img src="logo.png" alt="Wroth Profile Picture" class="pfp-img">
-        </div>
-
-        <h1 class="display-name">Wroth</h1>
-        <p class="sub-handle">wroth.lol/you</p>
-
-        <p class="bio-description">
-            Sharper than steel. // Unstoppable. <br>
-            <span>"Forged in the dark."</span>
-        </p>
-
-        <div class="links-grid">
-            <a href="https://github.com" target="_blank" class="bio-link">
-                <span class="link-title">GitHub</span>
-                <span class="link-icon">↗</span>
-            </a>
+        <section class="profile-card">
             
-            <a href="https://x.com" target="_blank" class="bio-link">
-                <span class="link-title">Twitter / X</span>
-                <span class="link-icon">↗</span>
-            </a>
-            
-            <a href="https://discord.com" target="_blank" class="bio-link">
-                <span class="link-title">Discord</span>
-                <span class="link-icon">↗</span>
-            </a>
-        </div>
+            <div class="badge-row">
+                <i class="fa-solid fa-crown" title="Premium"></i>
+                <i class="fa-solid fa-code" title="Developer"></i>
+                <i class="fa-brands fa-twitter" title="Twitter"></i>
+                <i class="fa-solid fa-heart" title="Supporter"></i>
+                <i class="fa-solid fa-shield-halved" title="Verified"></i>
+                <div class="view-count">
+                    <i class="fa-regular fa-eye"></i> 212
+                </div>
+            </div>
 
-        <div class="card-footer">
-            wroth.lol // © 2026
-        </div>
-    </div>
+            <div class="avatar-container">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=150&h=150&fit=crop" alt="Profile Picture" class="avatar">
+                <span class="status-dot"></span>
+            </div>
+
+            <h1 class="username">owner</h1>
+            <p class="subtext">@rich</p>
+            <p class="status-quote">Laundered til the end</p>
+
+            <nav class="links-wrapper">
+                <a href="https://steamcommunity.com" target="_blank" class="link-item">
+                    <i class="fa-brands fa-steam"></i> Steam
+                </a>
+                <a href="https://discord.com" target="_blank" class="link-item">
+                    <i class="fa-brands fa-discord"></i> Discord
+                </a>
+                <a href="https://github.com" target="_blank" class="link-item">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a href="#" class="link-item">
+                    <i class="fa-solid fa-link"></i> donator showcase
+                </a>
+            </nav>
+            
+        </section>
+
+        <footer class="audio-player">
+            <div class="track-art">
+                <i class="fa-solid fa-music"></i>
+            </div>
+            <div class="track-info">
+                <div class="track-name">Queen St.</div>
+                <div class="track-artist">by twentythree</div>
+                <div class="progress-container">
+                    <span class="time-stamp">0:47</span>
+                    <div class="progress-bar">
+                        <div class="progress-current"></div>
+                    </div>
+                    <span class="time-stamp">2:02</span>
+                </div>
+            </div>
+            <div class="controls">
+                <i class="fa-solid fa-pause"></i>
+            </div>
+        </footer>
+
+    </main>
 
 </body>
 </html>
