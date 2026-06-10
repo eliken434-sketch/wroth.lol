@@ -1,248 +1,295 @@
-/* Custom Global Variables */
-:root {
-    --bg-dark: #030106;
-    --card-surface: rgba(8, 6, 12, 0.55);
-    --border-glow: rgba(168, 85, 247, 0.12);
-    --text-pure: #ffffff;
-    --text-darker: rgba(255, 255, 255, 0.6);
-    --neon-purple: #bd5eff; /* Ultra-vibrant purple glow modifier */
-}
-
-/* Base Document Styles */
+/* --- Global Resets & Setup --- */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Gamja Flower', cursive, sans-serif;
-    letter-spacing: 0.9px;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-pure);
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(rgba(10, 15, 30, 0.7), rgba(10, 15, 30, 0.85)), 
+                url('https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?q=80&w=1920') no-repeat center center/cover;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 24px;
-    position: relative;
+    justify-content: center;
     overflow-x: hidden;
+    color: #ffffff;
+    padding: 40px 20px;
 }
 
-/* Fullscreen Background Layer */
-.bg-media-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -4;
-    overflow: hidden;
-}
-
-.bg-media {
-    width: 100%;
+/* --- Background Particle Elements --- */
+.particles {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    overflow: hidden;
+    z-index: 0;
     pointer-events: none;
 }
 
-/* Deep Vignette Filter */
-.vignette-overlay {
-    position: fixed;
+.particle {
+    position: absolute;
+    color: rgba(138, 43, 226, 0.3);
+    font-size: 12px;
+    animation: floatUp 8s infinite linear;
+}
+
+/* Hardcoded coordinates for the demo floating nodes */
+.p1 { top: 20%; left: 15%; animation-delay: 0s; }
+.p2 { top: 60%; left: 80%; animation-delay: 2s; }
+.p3 { top: 80%; left: 25%; animation-delay: 4s; }
+.p4 { top: 30%; left: 70%; animation-delay: 6s; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+/* --- Global Layout Navigation Header --- */
+.nav-bar {
+    position: absolute;
     top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(3,1,6,0.95) 100%);
-    z-index: -3;
-    pointer-events: none;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    z-index: 10;
 }
 
-/* Retro Premium CRT Scanline Simulation Overlay */
-.scanlines {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 6px 100%;
-    z-index: -2;
-    pointer-events: none;
-    opacity: 0.4;
+.nav-bar a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-/* Premium Matrix Tech Grid Overlay */
-.matrix-grid {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: 
-        linear-gradient(rgba(189, 94, 255, 0.012) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(189, 94, 255, 0.012) 1px, transparent 1px);
-    background-size: 20px 20px;
-    z-index: -1;
-    pointer-events: none;
+.nav-bar a:hover {
+    color: #ffffff;
 }
 
-/* Premium Transparent Profile Card */
+/* --- Container Block Configuration --- */
+.container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 420px;
+}
+
+/* --- Glassmorphic Profile Component --- */
 .profile-card {
     width: 100%;
-    max-width: 390px;
-    background: var(--card-surface);
-    backdrop-filter: blur(24px) saturate(140%);
-    -webkit-backdrop-filter: blur(24px) saturate(140%);
-    border: 1px solid var(--border-glow);
-    border-radius: 24px;
-    padding: 45px 28px;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.85), 
-                inset 0 0 30px rgba(189, 94, 255, 0.02);
+    background: rgba(10, 20, 40, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 180, 216, 0.25);
+    border-radius: 16px;
+    padding: 30px 24px;
     text-align: center;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.profile-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(189, 94, 255, 0.35);
-    box-shadow: 0 0 40px rgba(189, 94, 255, 0.12), 
-                0 40px 80px rgba(0, 0, 0, 0.95);
-}
-
-/* Ripple Status Badge */
-.status-badge {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(189, 94, 255, 0.06);
-    border: 1px solid rgba(189, 94, 255, 0.25);
-    padding: 5px 14px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: bold;
-    color: var(--text-pure);
-    margin-bottom: 28px;
-    overflow: hidden;
-}
-
-.pulse-indicator {
-    width: 6px;
-    height: 6px;
-    background-color: var(--neon-purple);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--neon-purple);
-    z-index: 2;
-}
-
-/* Smooth Avatar Glow Frame */
-.pfp-frame {
-    width: 105px;
-    height: 105px;
-    margin: 0 auto 20px auto;
-    border-radius: 50%;
-    background: rgba(5, 5, 10, 0.95);
-    border: 2px solid rgba(189, 94, 255, 0.35);
+/* Badge Layout Formatting */
+.badge-row {
     display: flex;
     justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.badge-row i {
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.badge-row i:hover {
+    transform: scale(1.2);
+    color: #00b4d8;
+}
+
+.view-count {
+    margin-left: auto;
+    font-family: 'Share Tech Mono', monospace;
+    display: flex;
     align-items: center;
-    overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7), 
-                0 0 20px rgba(189, 94, 255, 0.15);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 4px;
 }
 
-.profile-card:hover .pfp-frame {
-    transform: scale(1.03) rotate(1deg);
-    border-color: var(--neon-purple);
+/* Avatar Presentation Design */
+.avatar-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 15px;
 }
 
-.pfp-img {
+.avatar {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Typography elements configuration profiles */
-.display-name {
-    font-size: 38px;
-    font-weight: normal;
-    color: var(--text-pure);
-    margin-bottom: 2px;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+.status-dot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 12px;
+    height: 12px;
+    background-color: #2ec4b6;
+    border-radius: 50%;
+    border: 2px solid #0a1428;
 }
 
-.sub-handle {
-    font-size: 16px;
-    color: var(--neon-purple);
-    margin-bottom: 22px;
-    text-shadow: 0 0 10px rgba(189, 94, 255, 0.2);
+/* User Identity Data Callouts */
+.username {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #ffffff, #00b4d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.bio-description {
-    font-size: 20px;
-    color: var(--text-pure);
-    line-height: 1.4;
-    margin-bottom: 35px;
+.subtext {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 2px;
 }
 
-.bio-description span {
-    font-size: 15px;
-    color: var(--text-darker);
-    display: block;
-    margin-top: 5px;
+.status-quote {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 15px 0 25px;
+    font-style: italic;
 }
 
-/* Hyperlinks Modular Assembly Layout */
-.links-grid {
+/* Content Links Component Structure */
+.links-wrapper {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 100%;
-    margin-bottom: 30px;
 }
 
-.bio-link {
+.link-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 16px 24px;
-    background: rgba(12, 10, 20, 0.65);
-    border: 1px solid rgba(189, 94, 255, 0.08);
-    border-radius: 14px;
-    color: var(--text-pure);
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    font-size: 21px;
-    backdrop-filter: blur(5px);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
 }
 
-.bio-link:hover {
-    background: rgba(22, 16, 38, 0.85);
-    border-color: var(--neon-purple);
-    transform: translateX(2px) scale(1.015);
-    box-shadow: 0 0 20px rgba(189, 94, 255, 0.2), 
-                inset 0 0 10px rgba(189, 94, 255, 0.1);
+.link-item i {
+    width: 25px;
+    font-size: 1.1rem;
+    color: rgba(0, 180, 216, 0.8);
+    margin-right: 10px;
 }
 
-.link-icon {
-    font-size: 14px;
-    color: var(--text-darker);
-    transition: transform 0.2s ease, color 0.2s ease;
+.link-item:hover {
+    background: rgba(0, 180, 216, 0.1);
+    border-color: rgba(0, 180, 216, 0.4);
+    color: #ffffff;
+    transform: translateX(4px);
 }
 
-.bio-link:hover .link-icon {
-    transform: translate(3px, -3px);
-    color: var(--neon-purple);
+/* --- Inline System Audio Track Deck --- */
+.audio-player {
+    width: 100%;
+    background: rgba(10, 20, 40, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-/* Card Stamp Footer Layout rules */
-.card-footer {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.25);
-    text-transform: uppercase;
+.track-art {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.track-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.track-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.track-artist {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.time-stamp {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.progress-current {
+    width: 35%;
+    height: 100%;
+    background: linear-gradient(90deg, #00b4d8, #7209b7);
+    border-radius: 2px;
+}
+
+.controls i {
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.controls i:hover {
+    color: #00b4d8;
 }
